@@ -21,7 +21,7 @@ powder-sse3: $(SOURCES) $(HEADERS)
 	gcc -m32 -o$@ $(CFLAGS) $(OFLAGS) $(LFLAGS) $(MFLAGS_SSE3) $(SOURCES) -DLIN32
 	strip $@
 powder-mt: $(SOURCES) $(HEADERS)
-	gcc -m32 -o$@ $(CFLAGS) $(OFLAGS) $(LFLAGS_MT) $(MFLAGS_MT) $(SOURCES) -DLIN32
+	gcc -m64 -o$@ $(CFLAGS) $(OFLAGS) $(LFLAGS_MT) $(MFLAGS_MT) $(SOURCES) -DLIN32
 	strip $@
 powder-sse2: $(SOURCES) $(HEADERS)
 	gcc -m32 -o$@ $(CFLAGS) $(OFLAGS) $(LFLAGS) $(MFLAGS_SSE2) $(SOURCES) -DLIN32
