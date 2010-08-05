@@ -10,12 +10,15 @@ MFLAGS_MT := -march=k8 -DX86 -DX86_SSE3 -DMT -msse3
 MFLAGS_SSE3 := -march=k8 -DX86 -DX86_SSE3 -msse3
 MFLAGS_SSE2 := -march=k8 -DX86 -DX86_SSE2
 MFLAGS_SSE := -march=pentium3 -DX86 -DX86_SSE
-
+DEBUG_OFLAGS := -O0 -ggdb 
 LINUX_TARG := powder-64-sse2 powder-sse powder-sse2
 WIN32_TARG := powder-sse.exe powder-sse2.exe
 
 powder: $(SOURCES) $(HEADERS)
 	gcc -DINTERNAL -o$@ $(CFLAGS) $(OFLAGS) $(LFLAGS) $(MFLAGS_SSE3) $(SOURCES) -DLIN64
+
+powder-debug: $(SOURCES) $(HEADERS)
+	gcc -m64 -o$@ $(CFLAGS) $(DEBUG_OFLAGS) $(LFLAGS) $(SOURCES) -DLIN64
 
 powder-sse3: $(SOURCES) $(HEADERS)
 	gcc -m32 -o$@ $(CFLAGS) $(OFLAGS) $(LFLAGS) $(MFLAGS_SSE3) $(SOURCES) -DLIN32
