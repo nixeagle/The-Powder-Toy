@@ -60,4 +60,43 @@
 #define PT_SWCH 56
 #define PT_NUM  57
 
+struct part_type {
+  const char *name;
+  pixel pcolors;
+  float advection;
+  float airdrag;
+  float airloss;
+  float loss;
+  float collision;
+  float gravity;
+  float diffusion;
+  float hotair;
+  int falldown;
+  int flammable;
+  int explosive;
+  int meltable;
+  int hardness;
+  int menu;
+  int menusection;
+  //#ifdef HEAT_ENABLE //Locked on
+  float heat;
+  unsigned char hconduct;
+  //#endif
+  const char *descs;
+};
+
+#ifdef HEAT_ENABLE
+struct part_state {
+  char state;
+  int solid;
+  float stemp;
+  int liquid;
+  float ltemp;
+  int gas;
+  float gtemp;
+  int burn;
+  float btemp;
+};
+#endif
+
 #endif

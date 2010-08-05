@@ -54,16 +54,13 @@ typedef unsigned char uint8;
 #include "defines.h"
 #include "particles.h"
 #include "messages.h"
+#include "cores.h"
 
 typedef struct {
   int start, inc;
   pixel *vid;
 } upstruc;
 
-#ifdef BETA
-char *old_ver_msg_beta = "A new beta is available - click here!";
-#endif
-char *old_ver_msg = "A new version is available - click here!";
 #ifdef HEAT_ENABLE
 float mheat = 0.0f;
 #endif
@@ -97,11 +94,7 @@ float vx[YRES/CELL][XRES/CELL], ovx[YRES/CELL][XRES/CELL];
 float vy[YRES/CELL][XRES/CELL], ovy[YRES/CELL][XRES/CELL];
 float pv[YRES/CELL][XRES/CELL], opv[YRES/CELL][XRES/CELL];
 float fvx[YRES/CELL][XRES/CELL], fvy[YRES/CELL][XRES/CELL];
-#define TSTEPP 0.3f
-#define TSTEPV 0.4f
-#define VADV 0.3f
-#define VLOSS 0.999f
-#define PLOSS 0.9999f
+
 int numCores = 1;
 float kernel[9];
 void make_kernel(void)
@@ -117,30 +110,6 @@ void make_kernel(void)
   for(j=-1; j<2; j++)
     for(i=-1; i<2; i++)
       kernel[(i+1)+3*(j+1)] *= s;
-}
-
-int core_count(){
-  int numCPU = 1;
-#ifdef MT
-#ifdef WIN32
-  SYSTEM_INFO sysinfo;
-  GetSystemInfo( &sysinfo );
-  numCPU = sysinfo.dwNumberOfProcessors;
-#else
-#ifdef MACOSX
-  numCPU = 4;
-#else
-  numCPU = sysconf( _SC_NPROCESSORS_ONLN );
-#endif
-#endif
-
-  printf("Cpus: %d\n", numCPU);
-  if(numCPU>1)
-    printf("Multithreading enabled\n");
-  else
-    printf("Multithreading disabled\n");
-#endif
-  return numCPU;
 }
 
 void update_air(void)
@@ -297,45 +266,6 @@ void draw_air(pixel *vid)
 /***********************************************************
  *                   PARTICLE SIMULATOR                    *
  ***********************************************************/
-
-struct part_type {
-  const char *name;
-  pixel pcolors;
-  float advection;
-  float airdrag;
-  float airloss;
-  float loss;
-  float collision;
-  float gravity;
-  float diffusion;
-  float hotair;
-  int falldown;
-  int flammable;
-  int explosive;
-  int meltable;
-  int hardness;
-  int menu;
-  int menusection;
-  //#ifdef HEAT_ENABLE //Locked on
-  float heat;
-  unsigned char hconduct;
-  //#endif
-  const char *descs;
-};
-
-#ifdef HEAT_ENABLE
-struct part_state {
-  char state;
-  int solid;
-  float stemp;
-  int liquid;
-  float ltemp;
-  int gas;
-  float gtemp;
-  int burn;
-  float btemp;
-};
-#endif
 
 struct menu_section {
   char *icon;

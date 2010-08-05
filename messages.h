@@ -27,3 +27,9 @@ char *it_msg =
   "\nand CW for hosting the original server.\n"
   "\bgTo use online features such as saving, you need to register at: "
   "\brhttp://powder.hardwired.org.uk/Register.html";
+
+#ifdef BETA
+char *old_ver_msg_beta = "A new beta is available - click here!";
+#endif
+char *old_ver_msg = "A new version is available - click here!";
+

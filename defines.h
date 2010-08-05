@@ -71,3 +71,11 @@ typedef unsigned int pixel;
 #endif
 #endif
 #endif
+//Air flow simulator defines
+//TODO: Better names
+
+#define TSTEPP 0.3f
+#define TSTEPV 0.4f
+#define VADV 0.3f
+#define VLOSS 0.999f
+#define PLOSS 0.9999f
