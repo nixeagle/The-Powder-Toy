@@ -1,4 +1,25 @@
+/** Air flow simulator */
 #include "air.h"
+#include "util.h"
+#include <math.h>
+#include <stdlib.h>
+
+
+float kernel[9];
+void make_kernel(void)
+{
+  int i, j;
+  float s = 0.0f;
+  for(j=-1; j<2; j++)
+    for(i=-1; i<2; i++) {
+      kernel[(i+1)+3*(j+1)] = expf(-2.0f*(i*i+j*j));
+      s += kernel[(i+1)+3*(j+1)];
+    }
+  s = 1.0f / s;
+  for(j=-1; j<2; j++)
+    for(i=-1; i<2; i++)
+      kernel[(i+1)+3*(j+1)] *= s;
+}
 
 void *update_air_th(void *arg)
 {

@@ -1,3 +1,4 @@
+#include "defines.h"
 #ifndef _AIR_H_
 #define _AIR_H_
 
@@ -13,7 +14,7 @@ float fvx[YRES/CELL][XRES/CELL], fvy[YRES/CELL][XRES/CELL];
 
 void *update_air_th(void *arg);
 
-void_draw_air(pixel *vid);
+void draw_air(pixel *vid);
 
 void update_air(void);
 #endif
