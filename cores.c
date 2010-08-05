@@ -1,5 +1,16 @@
 #include "cores.h"
 
+// Need these for _SC_NPROCESSORS_ONLN.
+#ifdef WIN32
+#include <direct.h>
+#else
+#include <sys/stat.h>
+#include <unistd.h>
+#endif
+
+// Need this to do printf.
+#include <stdio.h>
+
 int core_count(){
   int numCPU = 1;
 #ifdef MT
