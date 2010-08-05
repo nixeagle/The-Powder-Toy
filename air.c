@@ -3,6 +3,8 @@
 #include "util.h"
 #include <math.h>
 #include <stdlib.h>
+#include <SDL/SDL.h>
+
 
 
 float kernel[9];
