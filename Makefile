@@ -1,5 +1,5 @@
-SOURCES := powder.c http.c md5.c update.c cores.c
-HEADERS := font.h hmap.h http.h md5.h icon.h update.h version.h cores.h defines.h messages.h 
+SOURCES := powder.c http.c md5.c update.c cores.c air.c
+HEADERS := font.h hmap.h http.h md5.h icon.h update.h version.h cores.h defines.h messages.h air.h 
 CFLAGS_DEBUG := -Wall -std=c99 -D_POSIX_C_SOURCE=200112L -fgnu89-inline
 CFLAGS := -Wall -std=c99 -D_POSIX_C_SOURCE=200112L -fgnu89-inline
 OFLAGS := -O3 -ffast-math -ftree-vectorize -funsafe-math-optimizations
