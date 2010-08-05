@@ -1,13 +1,17 @@
 #ifndef _DEFINES_H_
 #define _DEFINES_H_
 
+/** Server to connect to for user accounts and creations.
+
+    @todo Might be possible to ask for the source of the server?
+*/
 #define SERVER "powder.hardwired.org.uk"
 
 #undef PLOSS
 
 #ifdef MENUV3
 	#define MENUSIZE 40
-	
+
 #else
 	#define MENUSIZE 20
 
