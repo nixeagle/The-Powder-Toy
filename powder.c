@@ -104,23 +104,6 @@ void make_kernel(void)
 }
 
 
-unsigned clamp_flt(float f, float min, float max)
-{
-  if(f<min)
-    return 0;
-  if(f>max)
-    return 255;
-  return (int)(255.0f*(f-min)/(max-min));
-}
-
-float restrict_flt(float f, float min, float max){
-  if(f<min)
-    return min;
-  if(f>max)
-    return max;
-  return f;
-}
-
 /***********************************************************
  *                   PARTICLE SIMULATOR                    *
  ***********************************************************/
