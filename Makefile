@@ -3,14 +3,14 @@ HEADERS := font.h hmap.h http.h md5.h icon.h update.h version.h cores.h defines.
 CFLAGS_DEBUG := -Wall -std=c99 -D_POSIX_C_SOURCE=200112L -fgnu89-inline
 CFLAGS := -Wall -std=c99 -D_POSIX_C_SOURCE=200112L -fgnu89-inline
 OFLAGS := -O3 -ffast-math -ftree-vectorize -funsafe-math-optimizations
-LFLAGS := -lSDL -lm -lbz2 
+LFLAGS := -lSDL -lm -lbz2
 LFLAGS_MTW32 := -lpthreadGC2
 LFLAGS_MT := $(LFLAGS) -lpthread
 MFLAGS_MT := -march=k8 -DX86 -DX86_SSE3 -DMT -msse3
 MFLAGS_SSE3 := -march=k8 -DX86 -DX86_SSE3 -msse3
 MFLAGS_SSE2 := -march=k8 -DX86 -DX86_SSE2
 MFLAGS_SSE := -march=pentium3 -DX86 -DX86_SSE
-DEBUG_OFLAGS := -O0 -ggdb 
+DEBUG_OFLAGS := -O0 -ggdb
 LINUX_TARG := powder-64-sse2 powder-sse powder-sse2
 WIN32_TARG := powder-sse.exe powder-sse2.exe
 
@@ -61,7 +61,7 @@ powder-sse.exe: $(SOURCES) $(HEADERS) powder-res.o
 	chmod 0644 $@
 powder-x: $(SOURCES) $(HEADERS)
 	gcc -o $@ $(CFLAGS) $(OFLAGS) $(LFLAGS) $(MFLAGS) $(SOURCES) -lSDLmain -DMACOSX -DPIX32BGRA -arch x86_64 -framework Cocoa
-	strip $@ 
+	strip $@
 powder-x-mt: $(SOURCES) $(HEADERS)
 	gcc -o $@ $(CFLAGS) $(OFLAGS) $(LFLAGS_MT) $(MFLAGS_MT) $(SOURCES) -lSDLmain -DMACOSX -DPIX32BGRA -arch x86_64 -framework Cocoa
 powder-src.tar.bz2: *.c *.h *.rc *.ico Makefile
@@ -89,3 +89,8 @@ release: $(LINUX_TARG) $(WIN32_TARG) powder-src.tar.bz2
 	gzip release/powder
 	cd release; tar czf powder-bin.tar.gz powder.gz powder64.gz powder-linux.tar.gz powder-win32.zip powder.zip; cd ..
 	rm -f $(LINUX_TARG) $(WIN32_TARG) SDL.dll powder.exe
+
+
+#for flymake to use.
+check-syntax:
+	gcc -DINTERNAL $(CFLAGS) $(LFLAGS) $(MFLAGS_SSE3) -DLIN64 -o /dev/null -c ${CHK_SOURCES}
