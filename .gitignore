@@ -1,3 +1,5 @@
 doxygen/
 *~
 .*.*.swp
+/powder
+/powder-mt
