@@ -23,7 +23,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#include <SDL/SDL.h>
+#include <SDL.h>
 #include <bzlib.h>
 #include <time.h>
 //#include <pthread.h>
@@ -2822,7 +2822,6 @@ void update_particles(pixel *vid)
 	}
 	
 #ifdef MT
-	printf("%i", numCores);
 	if(numCores > 1) {
 		InterThreads = (pthread_t *)calloc(sizeof(pthread_t), numCores);
 		for(pc = 0; pc<numCores-1; pc++){
@@ -2830,7 +2829,7 @@ void update_particles(pixel *vid)
 			upargs[0].vid = vid;
 			upargs[0].start = pc;
 			upargs[0].inc = numCores-1;
-			pthread_create(&InterThreads[pc], NULL, (void*)update_particles_i_th, upargs);
+			pthread_create(&InterThreads[pc], NULL, update_particles_i_th, upargs);
 		}
 		for(pt = 0; pt<numCores-1; pt++){
 			pthread_join(InterThreads[pt],NULL);
