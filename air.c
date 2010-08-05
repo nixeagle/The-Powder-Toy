@@ -23,6 +23,7 @@ void make_kernel(void)
       kernel[(i+1)+3*(j+1)] *= s;
 }
 
+/// @bug \a arg is not used
 void *update_air_th(void *arg)
 {
   update_air();
