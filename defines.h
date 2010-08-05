@@ -22,6 +22,7 @@
 #define YRES    384
 #define NPART XRES*YRES
 
+
 #define ZSIZE_D 16
 #define ZFACTOR_D       8
 unsigned char ZFACTOR = 256/ZSIZE_D;
@@ -41,6 +42,10 @@ typedef unsigned short pixel;
 #define PIXG(x) (((x)>>3)&0xFC)
 #define PIXB(x) (((x)<<3)&0xF8)
 #else
+/** Size of a display pixel in bytes.
+
+    When \ref PIX16 is defined, value is 2, otherwise value is 4.
+ */
 #define PIXELSIZE 4
 typedef unsigned int pixel;
 #ifdef PIX32BGR
