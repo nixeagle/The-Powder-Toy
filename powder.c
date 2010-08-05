@@ -56,6 +56,7 @@ typedef unsigned char uint8;
 #include "messages.h"
 #include "cores.h"
 #include "air.h"
+#include "util.h"
 typedef struct {
   int start, inc;
   pixel *vid;
