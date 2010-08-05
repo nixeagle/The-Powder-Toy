@@ -1,6 +1,6 @@
 SOURCES := powder.c http.c md5.c update.c
 HEADERS := font.h hmap.h http.h md5.h icon.h update.h version.h
-
+CFLAGS_DEBUG := -Wall -std=c99 -D_POSIX_C_SOURCE=200112L -fgnu89-inline -Werror
 CFLAGS := -Wall -std=c99 -D_POSIX_C_SOURCE=200112L -fgnu89-inline
 OFLAGS := -O3 -ffast-math -ftree-vectorize -funsafe-math-optimizations
 LFLAGS := -lSDL -lm -lbz2 
@@ -18,7 +18,7 @@ powder: $(SOURCES) $(HEADERS)
 	gcc -DINTERNAL -o$@ $(CFLAGS) $(OFLAGS) $(LFLAGS) $(MFLAGS_SSE3) $(SOURCES) -DLIN64
 
 powder-debug: $(SOURCES) $(HEADERS)
-	gcc -m64 -o$@ $(CFLAGS) $(DEBUG_OFLAGS) $(LFLAGS) $(SOURCES) -DLIN64
+	gcc -m64 -o$@ $(CFLAGS_DEBUG) $(DEBUG_OFLAGS) $(LFLAGS) $(SOURCES) -DLIN64
 
 powder-sse3: $(SOURCES) $(HEADERS)
 	gcc -m32 -o$@ $(CFLAGS) $(OFLAGS) $(LFLAGS) $(MFLAGS_SSE3) $(SOURCES) -DLIN32
