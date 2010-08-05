@@ -1,5 +1,5 @@
 SOURCES := powder.c http.c md5.c update.c cores.c air.c
-HEADERS := font.h hmap.h http.h md5.h icon.h update.h version.h cores.h defines.h messages.h air.h 
+HEADERS := font.h hmap.h http.h md5.h icon.h update.h version.h cores.h defines.h messages.h air.h
 CFLAGS_DEBUG := -Wall -std=c99 -D_POSIX_C_SOURCE=200112L -fgnu89-inline
 CFLAGS := -Wall -std=c99 -D_POSIX_C_SOURCE=200112L -fgnu89-inline
 OFLAGS := -O3 -ffast-math -ftree-vectorize -funsafe-math-optimizations
@@ -93,4 +93,4 @@ release: $(LINUX_TARG) $(WIN32_TARG) powder-src.tar.bz2
 
 #for flymake to use.
 check-syntax:
-	gcc -DINTERNAL $(CFLAGS) $(LFLAGS) $(MFLAGS_SSE3) -DLIN64 -o /dev/null -c ${CHK_SOURCES}
+	gcc -DINTERNAL -Wextra $(CFLAGS) $(LFLAGS) $(MFLAGS_SSE3) -DLIN64 -o /dev/null -c ${CHK_SOURCES}
